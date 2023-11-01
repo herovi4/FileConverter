@@ -1,0 +1,46 @@
+<NBA_Players>
+    <Player>
+        <Name>LeBron James</Name>
+        <Position>Forward</Position>
+        <Team_Name>Los Angeles Lakers</Team_Name>
+        <Jersey_Number>23</Jersey_Number>
+        <Statistics>
+            <Points_Per_Game>25.0</Points_Per_Game>
+            <Assists_Per_Game>7.5</Assists_Per_Game>
+            <Rebounds_Per_Game>8.5</Rebounds_Per_Game>
+        </Statistics>
+    </Player>
+    <Player>
+        <Name>Anthony Davis</Name>
+        <Position>Center</Position>
+        <Jersey_Number>3</Jersey_Number>
+        <Team_Name>Los Angeles Lakers</Team_Name>
+        <Statistics>
+            <Points_Per_Game>22.0</Points_Per_Game>
+            <Assists_Per_Game>2.0</Assists_Per_Game>
+            <Rebounds_Per_Game>10.0</Rebounds_Per_Game>
+        </Statistics>
+    </Player>
+    <Player>
+        <Name>Stephen Curry</Name>
+        <Position>Guard</Position>
+        <Jersey_Number>30</Jersey_Number>
+        <Team_Name>Golden State Warriors</Team_Name>
+        <Statistics>
+            <Points_Per_Game>30.5</Points_Per_Game>
+            <Assists_Per_Game>6.0</Assists_Per_Game>
+            <Rebounds_Per_Game>5.0</Rebounds_Per_Game>
+        </Statistics>
+    </Player>
+    <Player>
+        <Name>Klay Thompson</Name>
+        <Position>Guard</Position>
+        <Jersey_Number>11</Jersey_Number>
+        <Team_Name>Golden State Warriors</Team_Name>
+        <Statistics>
+            <Points_Per_Game>20.0</Points_Per_Game>
+            <Assists_Per_Game>2.5</Assists_Per_Game>
+            <Rebounds_Per_Game>3.0</Rebounds_Per_Game>
+        </Statistics>
+    </Player>
+</NBA_Players>
