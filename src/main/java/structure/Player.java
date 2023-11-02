@@ -9,15 +9,15 @@ import java.util.List;
 @Getter
 @Setter
 public class Player {
-    @JacksonXmlProperty(localName = "Name")
+    @JacksonXmlProperty(localName = "name")
     private String name;
-    @JacksonXmlProperty(localName = "Position")
+    @JacksonXmlProperty(localName = "position")
     private String position;
-    @JacksonXmlProperty(localName = "Team_Name")
+    @JacksonXmlProperty(localName = "teamName")
     private String teamName;
-    @JacksonXmlProperty(localName = "Jersey_Number")
+    @JacksonXmlProperty(localName = "jerseyNumber")
     private int jerseyNumber;
-    @JacksonXmlProperty(localName = "Statistics")
+    @JacksonXmlProperty(localName = "statistics")
     private Statistics statistic;
 
 }
