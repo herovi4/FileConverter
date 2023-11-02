@@ -13,7 +13,7 @@ import java.util.List;
 @JacksonXmlRootElement(localName = "NBA_Players")
 public class NBAPlayers {
     @JacksonXmlElementWrapper(useWrapping = false)
-    @JacksonXmlProperty(localName = "Player")
+    @JacksonXmlProperty(localName = "player")
     private List<Player> players;
 
 }

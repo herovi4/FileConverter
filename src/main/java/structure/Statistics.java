@@ -1,15 +1,18 @@
 package structure;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.google.gson.annotations.Expose;
 import lombok.Getter;
 import lombok.Setter;
 
-
 public class Statistics {
-    @JacksonXmlProperty(localName = "Points_Per_Game")
+    @JacksonXmlProperty(localName = "pointsPerGame")
+    @Expose(serialize = true)
     private String pointsPerGame;
-    @JacksonXmlProperty(localName = "Assists_Per_Game")
+    @JacksonXmlProperty(localName = "assistsPerGame")
+    @Expose(serialize = true)
     private String assistsPerGame;
-    @JacksonXmlProperty(localName = "Rebounds_Per_Game")
+    @JacksonXmlProperty(localName = "reboundsPerGame")
+    @Expose(serialize = true)
     private String reboundsPerGame;
 }

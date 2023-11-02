@@ -13,19 +13,31 @@ import java.io.IOException;
 
 public class XMLToJsonConverter {
     public static void transform(NBAPlayers players) throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        JsonObject nbaPlayers = new JsonObject();
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .excludeFieldsWithoutExposeAnnotation()
+                .serializeNulls()
+                .create();
+
+        JsonObject clubs = new JsonObject();
 
         for (Player player : players.getPlayers()) {
             String teamName = player.getTeamName();
 
-            if (!nbaPlayers.has(teamName)) {
-                nbaPlayers.add(teamName, new JsonArray());
+            if (!clubs.has(teamName)) {
+                clubs.add(teamName, new JsonArray());
             }
 
             JsonObject playerJson = gson.toJsonTree(player).getAsJsonObject();
-            nbaPlayers.getAsJsonArray(teamName).add(playerJson);
+            clubs.getAsJsonArray(teamName).add(playerJson);
         }
+
+        JsonArray clubsArray = new JsonArray();
+        clubsArray.add(clubs);
+
+        JsonObject nbaPlayers = new JsonObject();
+        nbaPlayers.add("clubs", clubsArray);
+
         // Записываем JSON в файл
         String jsonOutput = gson.toJson(nbaPlayers);
         File jsonFile = new File("players.json");
@@ -33,4 +45,7 @@ public class XMLToJsonConverter {
         writer.write(jsonOutput);
         writer.close();
     }
+
+
+
 }

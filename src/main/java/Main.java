@@ -1,4 +1,3 @@
-import ReaderAndWriter.ReaderFromFile;
 import converters.XMLToJsonConverter;
 import structure.NBAPlayers;
 
