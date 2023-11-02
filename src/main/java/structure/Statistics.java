@@ -5,6 +5,8 @@ import com.google.gson.annotations.Expose;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
 public class Statistics {
     @JacksonXmlProperty(localName = "pointsPerGame")
     @Expose(serialize = true)

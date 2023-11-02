@@ -1,9 +1,6 @@
 package converters;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import structure.Player;
 import structure.NBAPlayers;
 
@@ -19,33 +16,47 @@ public class XMLToJsonConverter {
                 .serializeNulls()
                 .create();
 
-        JsonObject clubs = new JsonObject();
+        JsonObject teams = new JsonObject();
+        JsonArray teamArray = new JsonArray();
 
         for (Player player : players.getPlayers()) {
             String teamName = player.getTeamName();
 
-            if (!clubs.has(teamName)) {
-                clubs.add(teamName, new JsonArray());
+            JsonObject playerJson = gson.toJsonTree(player).getAsJsonObject();
+
+            boolean teamExists = false;
+            for (JsonElement teamElement : teamArray) {
+                JsonObject teamObject = teamElement.getAsJsonObject();
+                JsonObject team = teamObject.get("team").getAsJsonObject();
+
+                if (team.get("name").getAsString().equals(teamName)) {
+                    JsonArray playersArray = team.get("players").getAsJsonArray();
+                    playersArray.add(playerJson);
+                    teamExists = true;
+                    break;
+                }
             }
 
-            JsonObject playerJson = gson.toJsonTree(player).getAsJsonObject();
-            clubs.getAsJsonArray(teamName).add(playerJson);
+            if (!teamExists) {
+                JsonObject teamObject = new JsonObject();
+                JsonObject team = new JsonObject();
+                team.addProperty("name", teamName);
+                JsonArray playersArray = new JsonArray();
+                playersArray.add(playerJson);
+                team.add("players", playersArray);
+                teamObject.add("team", team);
+                teamArray.add(teamObject);
+            }
         }
 
-        JsonArray clubsArray = new JsonArray();
-        clubsArray.add(clubs);
-
-        JsonObject nbaPlayers = new JsonObject();
-        nbaPlayers.add("clubs", clubsArray);
+        teams.add("teams", teamArray);
 
         // Записываем JSON в файл
-        String jsonOutput = gson.toJson(nbaPlayers);
+        String jsonOutput = gson.toJson(teams);
         File jsonFile = new File("players.json");
         FileWriter writer = new FileWriter(jsonFile);
         writer.write(jsonOutput);
         writer.close();
     }
-
-
 
 }
