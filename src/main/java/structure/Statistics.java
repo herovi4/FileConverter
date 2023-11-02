@@ -1,10 +1,12 @@
 package structure;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-
+@Getter
+@Setter
 public class Statistics {
     @JacksonXmlProperty(localName = "pointsPerGame")
     private String pointsPerGame;
