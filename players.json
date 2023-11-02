@@ -1,0 +1,50 @@
+{
+  "teams": [
+    {
+      "Los Angeles Lakers": [
+        {
+          "name": "LeBron James",
+          "position": "Forward",
+          "jerseyNumber": 23,
+          "statistic": {
+            "pointsPerGame": "25.0",
+            "assistsPerGame": "7.5",
+            "reboundsPerGame": "8.5"
+          }
+        },
+        {
+          "name": "Anthony Davis",
+          "position": "Center",
+          "jerseyNumber": 3,
+          "statistic": {
+            "pointsPerGame": "22.0",
+            "assistsPerGame": "2.0",
+            "reboundsPerGame": "10.0"
+          }
+        }
+      ],
+      "Golden State Warriors": [
+        {
+          "name": "Stephen Curry",
+          "position": "Guard",
+          "jerseyNumber": 30,
+          "statistic": {
+            "pointsPerGame": "30.5",
+            "assistsPerGame": "6.0",
+            "reboundsPerGame": "5.0"
+          }
+        },
+        {
+          "name": "Klay Thompson",
+          "position": "Guard",
+          "jerseyNumber": 11,
+          "statistic": {
+            "pointsPerGame": "20.0",
+            "assistsPerGame": "2.5",
+            "reboundsPerGame": "3.0"
+          }
+        }
+      ]
+    }
+  ]
+}
