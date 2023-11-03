@@ -16,8 +16,7 @@ public class ReaderFromFile {
         try {
             File xmlFile = new File(filename);
             XmlMapper xmlMapper = new XmlMapper();
-            NBAPlayers nbaPlayers = xmlMapper.readValue(xmlFile, NBAPlayers.class);
-            return nbaPlayers;
+            return xmlMapper.readValue(xmlFile, NBAPlayers.class);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

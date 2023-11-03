@@ -1,12 +1,10 @@
 import structure.NBAPlayers;
 import structure.NBAPlayersJson;
 import structure.Player;
-
-import java.io.IOException;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         NBAPlayersJson nbaPlayersJson = ReaderFromFile.readFromJson("players.json");
         List<Player> players =JsonToXmlConverter.extractPlayers(nbaPlayersJson);
 

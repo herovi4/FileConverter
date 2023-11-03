@@ -57,7 +57,5 @@ w
 G.idea/sonarlint/issuestore/a/7/a7a747ad6b11ae4d801f3397df426a6cbf36b767,2\7\27e2df631bf0cadc6484a60f7636c4806cc7eba8
 w
 G.idea/sonarlint/issuestore/5/0/50271e9afa4c97555a5dcb4c65ba65f21f20e862,0\b\0baf8c40d04583fa27ca2752aec8244f00ea06d7
-U
-%src/main/java/structure/TeamInfo.java,c\c\cca4bdfb80679b977f573ff1f3278ea82fb26f51
 R
 "src/main/java/structure/Teams.java,1\6\16c8d779cd5b1d5fb09c7d3c9a6d4b7a678c034a
