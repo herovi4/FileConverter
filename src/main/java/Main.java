@@ -1,23 +1,48 @@
-import converters.XMLToJsonConverter;
-import structure.NBAPlayers;
-import structure.Player;
-import structure.NBAPlayers;
-import structure.NBAPlayersJson;
-import structure.Player;
-import java.util.List;
+import vyatsu.Convert;
+import vyatsu.Type;
 import java.io.IOException;
-import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        NBAPlayers players = ReaderFromFile.readFromXML("C:\\5 семестр\\Практика\\FileConverter\\players.xml");
-        XMLToJsonConverter.transform(players);
-        NBAPlayersJson nbaPlayersJson = ReaderFromFile.readFromJson("players.json");
-        List<Player> players =JsonToXmlConverter.extractPlayers(nbaPlayersJson);
+        if (args.length == 2) {
+            String inputFileName = args[0];
+            String outputFileName = args[1];
 
-        NBAPlayers nbaPlayersXml = new NBAPlayers();
-        nbaPlayersXml.setPlayers(players);
+            Convert converter = Convert.convert(inputFileName);
+            System.out.println(converter.convert(inputFileName,outputFileName));
+        }
+        else if(args.length == 0) {
+            Scanner scanner = new Scanner(System.in);
+            String inputFileName;
+            String outputFileName;
+            Convert converter;
+            System.out.println("Выберите операцию:\n1. Преобразовать XML в JSON\n2. Преобразовать JSON в XML");
+            Scanner inFile = new Scanner(System.in);
+            Scanner outfile = new Scanner(System.in);
+            int choice = scanner.nextInt();
 
-        JsonToXmlConverter.convertToXml(nbaPlayersXml,"players.xml");
+            switch (Type.byInt(choice)) {
+                case XML_TO_JSON -> {
+                    System.out.println("Введите путь к исходному файлу:");
+                    inputFileName = inFile.nextLine();
+                    System.out.println("Введите путь к выходному файлу:");
+                    outputFileName = outfile.nextLine();
+                    converter = Convert.convert(inputFileName);
+                    System.out.println(converter.convert(inputFileName, outputFileName));
+                }
+                case JSON_TO_XML -> {
+                    System.out.println("Введите путь к исходному файлу:");
+                    inputFileName = inFile.nextLine();
+                    System.out.println("Введите путь к выходному файлу:");
+                    outputFileName = outfile.nextLine();
+                    converter = Convert.convert(inputFileName);
+                    System.out.println(converter.convert(inputFileName, outputFileName));
+                    System.out.println("Преобразование JSON в XML завершено.");
+                }
+                default -> System.out.println("Неверный выбор. Пожалуйста, выберите операцию снова.");
+            }
+        }
     }
 }
+
