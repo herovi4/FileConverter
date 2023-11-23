@@ -1,4 +1,4 @@
-package vyatsu.structure;
+package vyatsu.fileconverter.JsonStructure;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;

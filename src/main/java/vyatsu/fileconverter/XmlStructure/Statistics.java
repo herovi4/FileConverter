@@ -1,4 +1,4 @@
-package vyatsu.structure;
+package vyatsu.fileconverter.XmlStructure;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.google.gson.annotations.Expose;

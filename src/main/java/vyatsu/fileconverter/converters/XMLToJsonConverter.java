@@ -1,15 +1,17 @@
-package vyatsu.converters;
+package vyatsu.fileconverter.converters;
 
 import com.google.gson.*;
-import vyatsu.structure.Player;
-import vyatsu.structure.NBAPlayers;
+import lombok.experimental.UtilityClass;
+import vyatsu.fileconverter.XmlStructure.NBAPlayers;
+import vyatsu.fileconverter.XmlStructure.Player;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+@UtilityClass
 public class XMLToJsonConverter {
-    public static void transform(NBAPlayers players,String newFileName) throws IOException {
+    public void transform(final NBAPlayers players, final String newFileName) throws IOException {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .excludeFieldsWithoutExposeAnnotation()
@@ -54,9 +56,9 @@ public class XMLToJsonConverter {
         // Записываем JSON в файл
         String jsonOutput = gson.toJson(teams);
         File jsonFile = new File(newFileName);
-        FileWriter writer = new FileWriter(jsonFile);
-        writer.write(jsonOutput);
-        writer.close();
+        try (FileWriter writer = new FileWriter(jsonFile)) {
+            writer.write(jsonOutput);
+        }
     }
 
 }

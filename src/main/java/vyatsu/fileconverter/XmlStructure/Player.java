@@ -1,4 +1,4 @@
-package vyatsu.structure;
+package vyatsu.fileconverter.XmlStructure;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
@@ -10,7 +10,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@JsonPropertyOrder({ "name", "position", "teamName", "jerseyNumber", "statistics" })
+@JsonPropertyOrder({"name", "position", "teamName", "jerseyNumber", "statistics"})
 @JacksonXmlRootElement(localName = "player")
 public class Player {
     @JacksonXmlProperty(localName = "name")
