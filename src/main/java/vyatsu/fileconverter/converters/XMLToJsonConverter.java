@@ -1,64 +1,58 @@
 package vyatsu.fileconverter.converters;
 
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import lombok.experimental.UtilityClass;
+import vyatsu.fileconverter.JsonStructure.NBAPlayersJson;
+import vyatsu.fileconverter.JsonStructure.Teams;
 import vyatsu.fileconverter.XmlStructure.NBAPlayers;
 import vyatsu.fileconverter.XmlStructure.Player;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @UtilityClass
 public class XMLToJsonConverter {
-    public void transform(final NBAPlayers players, final String newFileName) throws IOException {
+    Gson gson = new Gson();
+
+    private List<Teams> convertJsonArrayToList(JsonArray jsonArray) {
+        Type teamsListType = new TypeToken<List<Teams>>() {
+        }.getType();
+
+        return gson.fromJson(jsonArray, teamsListType);
+    }
+
+    public NBAPlayersJson convertToJson(final NBAPlayers players) {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .excludeFieldsWithoutExposeAnnotation()
                 .serializeNulls()
                 .create();
 
+        JsonArray teamArray = StreamSupport.stream(players.getPlayers().spliterator(), false)
+                .collect(Collectors.groupingBy(Player::getTeamName, LinkedHashMap::new,Collectors.toList()))
+                .entrySet()
+                .stream()
+                .map(entry -> {
+                    JsonObject teamObject = new JsonObject();
+                    JsonObject team = new JsonObject();
+                    team.addProperty("name", entry.getKey());
+                    JsonArray playersArray = entry.getValue().stream()
+                            .map(player -> gson.toJsonTree(player).getAsJsonObject())
+                            .collect(JsonArray::new, JsonArray::add, JsonArray::addAll);
+                    team.add("players", playersArray);
+                    teamObject.add("team", team);
+                    return teamObject;
+                })
+                .collect(JsonArray::new, JsonArray::add, JsonArray::addAll);
+
         JsonObject teams = new JsonObject();
-        JsonArray teamArray = new JsonArray();
-
-        for (Player player : players.getPlayers()) {
-            String teamName = player.getTeamName();
-
-            JsonObject playerJson = gson.toJsonTree(player).getAsJsonObject();
-
-            boolean teamExists = false;
-            for (JsonElement teamElement : teamArray) {
-                JsonObject teamObject = teamElement.getAsJsonObject();
-                JsonObject team = teamObject.get("team").getAsJsonObject();
-
-                if (team.get("name").getAsString().equals(teamName)) {
-                    JsonArray playersArray = team.get("players").getAsJsonArray();
-                    playersArray.add(playerJson);
-                    teamExists = true;
-                    break;
-                }
-            }
-
-            if (!teamExists) {
-                JsonObject teamObject = new JsonObject();
-                JsonObject team = new JsonObject();
-                team.addProperty("name", teamName);
-                JsonArray playersArray = new JsonArray();
-                playersArray.add(playerJson);
-                team.add("players", playersArray);
-                teamObject.add("team", team);
-                teamArray.add(teamObject);
-            }
-        }
-
         teams.add("teams", teamArray);
 
-        // Записываем JSON в файл
-        String jsonOutput = gson.toJson(teams);
-        File jsonFile = new File(newFileName);
-        try (FileWriter writer = new FileWriter(jsonFile)) {
-            writer.write(jsonOutput);
-        }
+        return new NBAPlayersJson(convertJsonArrayToList(teamArray));
     }
-
 }

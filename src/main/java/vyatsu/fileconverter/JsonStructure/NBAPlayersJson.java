@@ -10,5 +10,8 @@ import java.util.List;
 @Setter
 public class NBAPlayersJson {
     @SerializedName("teams")
-    private List<Teams> teams;
+    List<Teams> teams;
+    public NBAPlayersJson(List<Teams> teams) {
+        this.teams = teams;
+    }
 }

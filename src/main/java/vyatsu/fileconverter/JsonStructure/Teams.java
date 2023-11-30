@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 public class Teams {
     @SerializedName("team")
-    private Team team;
+    Team team;
 }

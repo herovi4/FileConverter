@@ -10,22 +10,22 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@JsonPropertyOrder({"name", "position", "teamName", "jerseyNumber", "statistics"})
+@JsonPropertyOrder({"name", "position","jerseyNumber", "teamName", "statistics"})
 @JacksonXmlRootElement(localName = "player")
 public class Player {
     @JacksonXmlProperty(localName = "name")
     @Expose(serialize = true)
-    private String name;
+    String name;
     @JacksonXmlProperty(localName = "position")
     @Expose(serialize = true)
-    private String position;
+    String position;
     @JacksonXmlProperty(localName = "teamName")
-    private String teamName;
+    String teamName;
     @JacksonXmlProperty(localName = "jerseyNumber")
     @Expose(serialize = true)
-    private int jerseyNumber;
+    int jerseyNumber;
     @JacksonXmlProperty(localName = "statistics")
     @Expose(serialize = true)
-    private Statistics statistic;
+    Statistics statistic;
 
 }

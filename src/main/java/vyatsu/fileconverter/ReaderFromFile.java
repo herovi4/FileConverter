@@ -3,6 +3,7 @@ package vyatsu.fileconverter;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.google.gson.Gson;
 import lombok.experimental.UtilityClass;
+import lombok.val;
 import vyatsu.fileconverter.JsonStructure.NBAPlayersJson;
 import vyatsu.fileconverter.XmlStructure.NBAPlayers;
 
@@ -15,8 +16,8 @@ import java.io.Reader;
 public class ReaderFromFile {
     public NBAPlayers readFromXML(final String filename) {
         try {
-            File xmlFile = new File(filename);
-            XmlMapper xmlMapper = new XmlMapper();
+            val xmlFile = new File(filename);
+            val xmlMapper = new XmlMapper();
             return xmlMapper.readValue(xmlFile, NBAPlayers.class);
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -26,9 +27,9 @@ public class ReaderFromFile {
 
     public NBAPlayersJson readFromJson(final String filename) {
         try {
-            Gson gson = new Gson();
-            Reader reader = new FileReader(filename);
-            return gson.fromJson(reader, NBAPlayersJson.class);
+            val gson = new Gson();
+            val reader = new FileReader(filename);
+            return  gson.fromJson(reader, NBAPlayersJson.class);
         } catch (IOException exception) {
             exception.printStackTrace();
             return null;

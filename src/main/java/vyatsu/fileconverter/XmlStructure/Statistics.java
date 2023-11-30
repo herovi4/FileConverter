@@ -10,11 +10,11 @@ import lombok.Setter;
 public class Statistics {
     @JacksonXmlProperty(localName = "pointsPerGame")
     @Expose(serialize = true)
-    private String pointsPerGame;
+    String pointsPerGame;
     @JacksonXmlProperty(localName = "assistsPerGame")
     @Expose(serialize = true)
-    private String assistsPerGame;
+    String assistsPerGame;
     @JacksonXmlProperty(localName = "reboundsPerGame")
     @Expose(serialize = true)
-    private String reboundsPerGame;
+    String reboundsPerGame;
 }

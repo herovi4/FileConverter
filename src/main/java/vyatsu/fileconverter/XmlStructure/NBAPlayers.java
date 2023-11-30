@@ -14,6 +14,6 @@ import java.util.List;
 public class NBAPlayers {
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "player")
-    private List<Player> players;
+    List<Player> players;
 
 }

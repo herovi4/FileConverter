@@ -9,10 +9,9 @@ import java.util.List;
 
 @Getter
 @Setter
-
 public class Team {
     @SerializedName("name")
-    private String teamName;
+    String teamName;
     @SerializedName("players")
-    private List<Player> players;
+    List<Player> players;
 }

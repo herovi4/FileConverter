@@ -1,5 +1,6 @@
 import lombok.val;
 import org.junit.jupiter.api.Test;
+import vyatsu.fileconverter.Main;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MainClassTests {
     private final String inputFilePath = "src/test/resources/in/players.xml";
-    private final String outputFilePath = "src/test/resources/out/players.json";
+    private final String outputFilePath = "src/test/resources/result/players.json";
     @Test
     void MainWithCorrectArgsTest() {
         val args = new String[]{inputFilePath, outputFilePath};

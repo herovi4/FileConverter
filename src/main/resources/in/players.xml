@@ -3,8 +3,8 @@
     <player>
         <name>LeBron James</name>
         <position>Forward</position>
-        <teamName>Los Angeles Lakers</teamName>
         <jerseyNumber>23</jerseyNumber>
+        <teamName>Los Angeles Lakers</teamName>
         <statistics>
             <pointsPerGame>25.0</pointsPerGame>
             <assistsPerGame>7.5</assistsPerGame>
