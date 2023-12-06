@@ -9,7 +9,6 @@ public final class Menu {
     private final Scanner SCANNER = new Scanner(System.in);
     public String getInputFilePath() {
         System.out.println("Введите путь к исходному файлу:");
-        SCANNER.nextLine();
         return SCANNER.nextLine();
     }
     public String getOutputFilePath() {

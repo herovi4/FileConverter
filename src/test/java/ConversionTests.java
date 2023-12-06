@@ -2,7 +2,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.val;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import vyatsu.fileconverter.convert.service.Converter;
+import vyatsu.fileconverter.convert.service.ConverterUtils;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,8 +19,7 @@ class ConversionTests {
         val outputFilePath = Paths.get("src/test/resources/result/players.json");
         val inputFilePath = Paths.get("src/test/resources/players.xml");
         val compareFilePath = Paths.get("src/test/resources/players.json");
-        Converter converter = Converter.getConverter(inputFilePath.toString());
-        converter.getConverter(inputFilePath.toString(), outputFilePath.toString());
+        ConverterUtils.getConverter(inputFilePath.toString()).convert(inputFilePath.toString(), outputFilePath.toString());
 
         val actualContent = Files.readString(outputFilePath);
         val expectedContent = Files.readString(compareFilePath);
@@ -35,8 +34,7 @@ class ConversionTests {
         val outputFilePath = Paths.get("src/test/resources/result/players.xml");
         val inputFilePath = Paths.get("src/test/resources/players.json");
         val compareFilePath = Paths.get("src/test/resources/players.xml");
-        Converter converter = Converter.getConverter(inputFilePath.toString());
-        converter.getConverter(inputFilePath.toString(), outputFilePath.toString());
+        ConverterUtils.getConverter(inputFilePath.toString()).convert(inputFilePath.toString(), outputFilePath.toString());
 
         val actualContent = Files.readString(outputFilePath);
         val expectedContent = Files.readString(compareFilePath);
@@ -52,8 +50,8 @@ class ConversionTests {
                 .forEach(path -> {
                     try {
                         Files.deleteIfExists(path);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    } catch (IOException exception) {
+                        exception.printStackTrace();
                     }
                 });
     }

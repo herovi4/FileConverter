@@ -1,17 +1,16 @@
 package vyatsu.fileconverter.JsonStructure;
 
 import com.google.gson.annotations.SerializedName;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class NBAPlayersJson {
     @SerializedName("teams")
     List<Teams> teams;
-    public NBAPlayersJson(List<Teams> teams) {
-        this.teams = teams;
-    }
 }
