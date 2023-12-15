@@ -5,16 +5,12 @@ import com.google.gson.annotations.SerializedName;
 import lombok.*;
 import java.util.List;
 
-@Getter
-@Setter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class Team {
+public record Team (
     @JsonProperty("name")
     @SerializedName("name")
-    String teamName;
+    String teamName,
     @JsonProperty("players")
     @SerializedName("players")
-    List<PlayerJson> players;
+    List<PlayerJson> players){
 }

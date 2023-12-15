@@ -10,20 +10,20 @@ import vyatsu.fileconverter.XmlStructure.Statistics;
 public class JsonToXmlConverter {
     public NBAPlayers convertToXml(final NBAPlayersJson nbaPlayersJson) {
         return NBAPlayers.builder()
-                .players(nbaPlayersJson.getTeams().stream()
-                        .flatMap(team -> team.getTeam().getPlayers().stream()
-                                .map(playerJson -> PlayerXML.builder()
-                                        .name(playerJson.getName())
-                                        .position(playerJson.getPosition())
-                                        .jerseyNumber(playerJson.getJerseyNumber())
-                                        .teamName(team.getTeam().getTeamName())
-                                        .statistic(new Statistics(
-                                                playerJson.getStatistic().pointsPerGame(),
-                                                playerJson.getStatistic().assistsPerGame(),
-                                                playerJson.getStatistic().reboundsPerGame()))
-                                        .build()))
-                        .toList())
-                .build();
+            .players(nbaPlayersJson.getTeams().stream()
+                .flatMap(team -> team.getTeam().players().stream()
+                    .map(playerJson -> PlayerXML.builder()
+                        .name(playerJson.name())
+                        .position(playerJson.position())
+                        .jerseyNumber(playerJson.jerseyNumber())
+                        .teamName(team.getTeam().teamName())
+                        .statistic(new Statistics(
+                            playerJson.statistic().pointsPerGame(),
+                            playerJson.statistic().assistsPerGame(),
+                            playerJson.statistic().reboundsPerGame()))
+                        .build()))
+                    .toList())
+            .build();
     }
 }
 

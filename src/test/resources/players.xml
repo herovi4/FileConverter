@@ -1,47 +1,47 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <NBA_Players>
-  <player>
-    <name>LeBron James</name>
-    <position>Forward</position>
-    <jerseyNumber>23</jerseyNumber>
-    <teamName>Los Angeles Lakers</teamName>
-    <statistics>
-      <pointsPerGame>25.0</pointsPerGame>
-      <assistsPerGame>7.5</assistsPerGame>
-      <reboundsPerGame>8.5</reboundsPerGame>
-    </statistics>
-  </player>
-  <player>
-    <name>Anthony Davis</name>
-    <position>Center</position>
-    <jerseyNumber>3</jerseyNumber>
-    <teamName>Los Angeles Lakers</teamName>
-    <statistics>
-      <pointsPerGame>22.0</pointsPerGame>
-      <assistsPerGame>2.0</assistsPerGame>
-      <reboundsPerGame>10.0</reboundsPerGame>
-    </statistics>
-  </player>
-  <player>
-    <name>Stephen Curry</name>
-    <position>Guard</position>
-    <jerseyNumber>30</jerseyNumber>
-    <teamName>Golden State Warriors</teamName>
-    <statistics>
-      <pointsPerGame>30.5</pointsPerGame>
-      <assistsPerGame>6.0</assistsPerGame>
-      <reboundsPerGame>5.0</reboundsPerGame>
-    </statistics>
-  </player>
-  <player>
-    <name>Klay Thompson</name>
-    <position>Guard</position>
-    <jerseyNumber>11</jerseyNumber>
-    <teamName>Golden State Warriors</teamName>
-    <statistics>
-      <pointsPerGame>20.0</pointsPerGame>
-      <assistsPerGame>2.5</assistsPerGame>
-      <reboundsPerGame>3.0</reboundsPerGame>
-    </statistics>
-  </player>
+    <player>
+        <name>LeBron James</name>
+        <position>Forward</position>
+        <jerseyNumber>23</jerseyNumber>
+        <teamName>Los Angeles Lakers</teamName>
+        <statistics>
+            <pointsPerGame>25.0</pointsPerGame>
+            <assistsPerGame>7.5</assistsPerGame>
+            <reboundsPerGame>8.5</reboundsPerGame>
+        </statistics>
+    </player>
+    <player>
+        <name>Anthony Davis</name>
+        <position>Center</position>
+        <jerseyNumber>3</jerseyNumber>
+        <teamName>Los Angeles Lakers</teamName>
+        <statistics>
+            <pointsPerGame>22.0</pointsPerGame>
+            <assistsPerGame>2.0</assistsPerGame>
+            <reboundsPerGame>10.0</reboundsPerGame>
+        </statistics>
+    </player>
+    <player>
+        <name>Stephen Curry</name>
+        <position>Guard</position>
+        <jerseyNumber>30</jerseyNumber>
+        <teamName>Golden State Warriors</teamName>
+        <statistics>
+            <pointsPerGame>30.5</pointsPerGame>
+            <assistsPerGame>6.0</assistsPerGame>
+            <reboundsPerGame>5.0</reboundsPerGame>
+        </statistics>
+    </player>
+    <player>
+        <name>Klay Thompson</name>
+        <position>Guard</position>
+        <jerseyNumber>11</jerseyNumber>
+        <teamName>Golden State Warriors</teamName>
+        <statistics>
+            <pointsPerGame>20.0</pointsPerGame>
+            <assistsPerGame>2.5</assistsPerGame>
+            <reboundsPerGame>3.0</reboundsPerGame>
+        </statistics>
+    </player>
 </NBA_Players>

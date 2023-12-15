@@ -17,15 +17,15 @@ public class Main {
                 val inputFileName = Menu.getInputFilePath();
                 val outputFileName = Menu.getOutputFilePath();
                 ConverterUtils.getConverter(inputFileName).convert(inputFileName, outputFileName);
-                log.info(String.format("Файл %s успешно конвертирован в файл %s", inputFileName, outputFileName));
+                log.info("Файл {} успешно конвертирован в файл {}", inputFileName, outputFileName);
             } else {
                 log.error("Получено некорректное количество аргументов");
             }
         } catch (Exception exception) {
             System.out.println("Ошибка!");
-            log.info(String.format("Произошла ошибка: %s", exception.getMessage()));
-            log.error("Ошибка: {} {}.\nДетали: {}", exception.getMessage(), exception.getCause(), exception.getStackTrace());
+            log.error("Произошла ошибка: {}", exception.getMessage(), exception);
         }
     }
 }
+
 

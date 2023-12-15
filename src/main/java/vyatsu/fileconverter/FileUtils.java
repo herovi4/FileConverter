@@ -17,38 +17,42 @@ public class FileUtils {
     XmlMapper xmlMapper = new XmlMapper();
     ObjectMapper objectMapper = new ObjectMapper();
 
-    public NBAPlayers readFromXML(final String filename) {
+    public NBAPlayers readFromXML(final String filename) throws IOException {
         try {
             return xmlMapper.readValue(new File(filename), NBAPlayers.class);
         } catch (Exception exception) {
             log.error("Ошибка при чтении из XML файла {}: {}", filename, exception.getMessage(), exception);
-            return null;
+            throw new IOException("Ошибка при чтении из XML файла", exception);
         }
     }
 
-    public void writeXmlFile(final NBAPlayers nbaPlayersXml, final String fileName) {
+    public void writeXmlFile(final NBAPlayers nbaPlayersXml, final String fileName) throws IOException {
         xmlMapper.configure(ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true);
         try {
-            xmlMapper.writerWithDefaultPrettyPrinter().writeValue(new File(fileName), nbaPlayersXml);
+            xmlMapper.writerWithDefaultPrettyPrinter()
+                    .writeValue(new File(fileName), nbaPlayersXml);
         } catch (Exception exception) {
             log.error("Ошибка при записи в XML файл {}: {}", fileName, exception.getMessage(), exception);
+            throw new IOException("Ошибка при записи в XML файл", exception);
         }
     }
 
-    public NBAPlayersJson readFromJson(final String filename) {
+    public NBAPlayersJson readFromJson(final String filename) throws IOException {
         try {
             return objectMapper.readValue(new FileReader(filename), NBAPlayersJson.class);
         } catch (IOException exception) {
             log.error("Ошибка при чтении из JSON файла {}: {}", filename, exception.getMessage(), exception);
-            return null;
+            throw new IOException("Ошибка при чтении из JSON файла", exception);
         }
     }
 
-    public void writeJsonFile(final NBAPlayersJson nbaPlayersJson, final String fileName) {
+    public void writeJsonFile(final NBAPlayersJson nbaPlayersJson, final String fileName) throws IOException {
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(fileName), nbaPlayersJson);
         } catch (IOException exception) {
             log.error("Ошибка при записи в JSON файл {}: {}", fileName, exception.getMessage(), exception);
+            throw new IOException("Ошибка при записи в JSON файл", exception);
         }
     }
 }
+

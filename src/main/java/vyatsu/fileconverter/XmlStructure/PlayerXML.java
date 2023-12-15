@@ -6,22 +6,19 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.*;
 
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Builder
 @JsonPropertyOrder({"name", "position","jerseyNumber", "teamName", "statistics"})
 @JacksonXmlRootElement(localName = "player")
-public class PlayerXML {
+public record PlayerXML (
     @JacksonXmlProperty(localName = "name")
-    String name;
+    String name,
     @JacksonXmlProperty(localName = "position")
-    String position;
+    String position,
     @JacksonXmlProperty(localName = "teamName")
-    String teamName;
+    String teamName,
     @JacksonXmlProperty(localName = "jerseyNumber")
-    int jerseyNumber;
+    int jerseyNumber,
     @JacksonXmlProperty(localName = "statistics")
-    Statistics statistic;
+    Statistics statistic){
 }
