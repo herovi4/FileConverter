@@ -24,11 +24,11 @@ class MainInteractiveTest {
         } catch (Exception exception) {
             throw new RuntimeException(exception);
         }
-        PrintStream printStreamOut = new PrintStream(testOut);
+        val printStreamOut = new PrintStream(testOut);
         setOut(printStreamOut);
     }
     private void setUpInput(final String data) {
-        ByteArrayInputStream testIn = new ByteArrayInputStream(data.getBytes());
+        val testIn = new ByteArrayInputStream(data.getBytes());
         setIn(testIn);
     }
     @AfterEach
