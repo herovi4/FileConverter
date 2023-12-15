@@ -15,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class MainInteractiveTest {
     private final InputStream originalSystemIn = System.in;
     private final PrintStream originalSystemOut = System.out;
-    private ByteArrayOutputStream testOut;
+    private ByteArrayOutputStream testOut = new ByteArrayOutputStream();
 
     @BeforeEach
     public void setUpOutput() {
         try {
             testOut = new ByteArrayOutputStream();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (Exception exception) {
+            throw new RuntimeException(exception);
         }
         PrintStream printStreamOut = new PrintStream(testOut);
         setOut(printStreamOut);
