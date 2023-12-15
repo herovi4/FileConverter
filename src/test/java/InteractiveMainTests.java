@@ -1,34 +1,36 @@
-import lombok.Cleanup;
 import lombok.val;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import vyatsu.fileconverter.Main;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 
 import static java.lang.System.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class InteractiveMainTests {
+class MainInteractiveTest {
     private final InputStream originalSystemIn = System.in;
     private final PrintStream originalSystemOut = System.out;
     private ByteArrayOutputStream testOut;
 
     @BeforeEach
     public void setUpOutput() {
-        @Cleanup
-        val testOut = new ByteArrayOutputStream();
-        val printStreamOut = new PrintStream(testOut);
+        try {
+            testOut = new ByteArrayOutputStream();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        PrintStream printStreamOut = new PrintStream(testOut);
         setOut(printStreamOut);
     }
-
     private void setUpInput(final String data) {
-        @Cleanup
-        val testIn = new ByteArrayInputStream(data.getBytes());
+        ByteArrayInputStream testIn = new ByteArrayInputStream(data.getBytes());
         setIn(testIn);
     }
-
     @AfterEach
     public void restoreSystemInputOutput() {
         setIn(originalSystemIn);
@@ -39,16 +41,15 @@ class InteractiveMainTests {
     void testMainInteractiveModeWithCorrectInput() {
         setUpInput("src/test//players.json\nsrc/test/resources/players.xml\n");
         Main.main(new String[0]);
-        assertTrue(testOut.toString().startsWith("Введите путь к исходному файлу:" + System.lineSeparator() +
+        assertTrue(testOut.toString().startsWith("Введите путь к исходному файлу:"+lineSeparator()+
                 "Введите путь к выходному файлу:"));
     }
-
     @Test
     void testMainInteractiveModeWithInCorrectInput() {
         val input = "players.json";
         setUpInput(input);
         Main.main(new String[0]);
-        assertTrue(testOut.toString().startsWith("Введите путь к исходному файлу:" + System.lineSeparator() +
-                "Введите путь к выходному файлу:" + System.lineSeparator() + "Ошибка!"));
+        assertTrue(testOut.toString().startsWith("Введите путь к исходному файлу:"+lineSeparator()+
+                "Введите путь к выходному файлу:"+lineSeparator()+"Ошибка!"));
     }
 }
