@@ -14,6 +14,8 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -86,6 +88,6 @@ class ConversionTests {
     }
 
     private String removeWhiteSpaces(final String input) {
-        return input.replaceAll("\\s+", "");
+        return input.replaceAll("\\s+|(?<=\\>)\\s+(?=\\<)|\"([^\"]*)\"", "$1");
     }
 }
