@@ -17,9 +17,11 @@ public class Main {
                 val inputFileName = Menu.getInputFilePath();
                 val outputFileName = Menu.getOutputFilePath();
                 ConverterUtils.getConverter(inputFileName).convert(inputFileName, outputFileName);
+                System.out.println("Успех!");
                 log.info("Файл {} успешно конвертирован в файл {}", inputFileName, outputFileName);
             } else {
                 log.error("Получено некорректное количество аргументов");
+                System.err.println("Получено некорректное количество аргументов");
             }
         } catch (Exception exception) {
             System.out.println("Ошибка!");

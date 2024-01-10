@@ -3,14 +3,13 @@ package vyatsu.fileconverter.XmlStructure;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import lombok.*;
-
+import lombok.Builder;
 
 
 @Builder
-@JsonPropertyOrder({"name", "position","jerseyNumber", "teamName", "statistics"})
+@JsonPropertyOrder({"name", "position", "jerseyNumber", "teamName", "statistics"})
 @JacksonXmlRootElement(localName = "player")
-public record PlayerXML (
+public record PlayerXML(
     @JacksonXmlProperty(localName = "name")
     String name,
     @JacksonXmlProperty(localName = "position")
@@ -20,5 +19,5 @@ public record PlayerXML (
     @JacksonXmlProperty(localName = "jerseyNumber")
     int jerseyNumber,
     @JacksonXmlProperty(localName = "statistics")
-    Statistics statistic){
+    Statistics statistic) {
 }

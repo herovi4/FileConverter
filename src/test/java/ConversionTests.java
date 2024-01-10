@@ -1,3 +1,4 @@
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -16,9 +17,16 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+@Slf4j
 class ConversionTests {
     private static final String OUTPUT_DIR = "src/test/resources/result/";
+
+    private static Stream<Object[]> converterProvider() {
+        return Stream.of(
+            new Object[]{new ConverterToJson(), "xml", "json"},
+            new Object[]{new ConverterToXml(), "json", "xml"}
+        );
+    }
 
     @ParameterizedTest
     @MethodSource("converterProvider")
@@ -45,20 +53,25 @@ class ConversionTests {
 
     @AfterEach
     void cleanUp() throws IOException {
-        Files.list(Paths.get(OUTPUT_DIR))
+        try {
+            Files.list(Paths.get(OUTPUT_DIR))
                 .filter(path -> path.toString().endsWith(".json") || path.toString().endsWith(".xml"))
                 .forEach(path -> {
                     try {
                         Files.deleteIfExists(path);
                     } catch (IOException exception) {
-                        exception.printStackTrace();
+                        log.error("Ошибка удаления файла: {}", path.toString(), exception);
                     }
                 });
+        } catch (IOException exception) {
+            log.error("Ошибка при чтении файлов в каталоге: {}", OUTPUT_DIR, exception);
+            throw new IOException("Ошибка при чтении файлов в каталоге: " + OUTPUT_DIR, exception);
+        }
     }
 
     private void assertFileContentsEqual(final Path actualFilePath, final Path expectedFilePath) throws IOException {
-        String actualContent = Files.readString(actualFilePath);
-        String expectedContent = Files.readString(expectedFilePath);
+        val actualContent = Files.readString(actualFilePath);
+        val expectedContent = Files.readString(expectedFilePath);
 
         assertEquals(removeWhiteSpaces(actualContent.trim()), removeWhiteSpaces(expectedContent.trim()));
     }
@@ -66,17 +79,13 @@ class ConversionTests {
     private Path getResourcePath(final String fileName) {
         try {
             return Paths.get(ClassLoader.getSystemResource(fileName).toURI());
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+        } catch (URISyntaxException exception) {
+            log.error("Ошибка преобразования URI для ресурса: {}", fileName, exception);
+            throw new RuntimeException("Ошибка преобразования URI для ресурса: " + fileName, exception);
         }
     }
+
     private String removeWhiteSpaces(final String input) {
         return input.replaceAll("\\s+", "");
-    }
-    private static Stream<Object[]> converterProvider() {
-        return Stream.of(
-                new Object[]{new ConverterToJson(), "xml", "json"},
-                new Object[]{new ConverterToXml(), "json", "xml"}
-        );
     }
 }

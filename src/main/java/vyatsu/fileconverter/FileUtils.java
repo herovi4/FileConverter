@@ -11,6 +11,7 @@ import vyatsu.fileconverter.XmlStructure.NBAPlayers;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+
 @Slf4j
 @UtilityClass
 public class FileUtils {
@@ -30,7 +31,7 @@ public class FileUtils {
         xmlMapper.configure(ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true);
         try {
             xmlMapper.writerWithDefaultPrettyPrinter()
-                    .writeValue(new File(fileName), nbaPlayersXml);
+                .writeValue(new File(fileName), nbaPlayersXml);
         } catch (Exception exception) {
             log.error("Ошибка при записи в XML файл {}: {}", fileName, exception.getMessage(), exception);
             throw new IOException("Ошибка при записи в XML файл", exception);
